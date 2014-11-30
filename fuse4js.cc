@@ -45,6 +45,7 @@ using v8::String;
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
+#include <cstring>
 
 using namespace v8;
 
@@ -390,7 +391,7 @@ void *fuse_thread(void *)
   ops.init = f4js_init;
   ops.destroy = f4js_destroy;
   const char* debugOption = f4js.enableFuseDebug? "-d":"-f";
-  char *argv[] = { (char*)"dummy", (char*)"-s", (char*)debugOption, (char*)f4js.root.c_str() };
+  char *argv[] = { (char*)"dummy", (char*)"-s", (char*)debugOption, (char*)f4js.root.c_str(), (char*)"-o", (char*)"allow_other" };
 
   int initialArgc = sizeof(argv) / sizeof(char*);
   char **argvIncludingExtraArgs = (char**)malloc(sizeof(char*) * (initialArgc + f4js.extraArgc));
